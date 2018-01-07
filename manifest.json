@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+
+  "name": "OpenGraph Data Generator",
+  "description": "Analyze Information Center content to generate OpenGraph metadata.",
+  "version": "1.00",
+
+  "browser_action": {
+   "name": "Click to generate OpenGraph metadata",
+   "default_icon": "icon1.png"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "https://www.vafb.com/insurance/information-center/ArticleId/*",
+    "https://www.vafb.com/membership-at-work/news-resources/ArticleId/*"
+  ],
+  "background": {
+   "scripts": ["background.js", "analyze.js"]
+ },
+   "content_scripts": [
+   {
+     "matches": [
+       "https://www.vafb.com/insurance/information-center/ArticleId/*",
+       "https://www.vafb.com/membership-at-work/news-resources/ArticleId/*"
+      ],
+     "js": ["analyze.js"],
+     "run_at": "document_end"
+   }
+ ]
+}
